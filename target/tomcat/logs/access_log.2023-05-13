@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [13/May/2023:21:10:50 -0600] "GET /academiaXavier.mx HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [13/May/2023:21:10:51 -0600] "GET /academiaXavier.mx/ HTTP/1.1" 200 52 http-bio-8080-exec-3 507
+0:0:0:0:0:0:0:1 - - [13/May/2023:21:10:51 -0600] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [13/May/2023:21:11:44 -0600] "GET /academiaXavier.mx/ HTTP/1.1" 200 55 http-bio-8080-exec-5 59
