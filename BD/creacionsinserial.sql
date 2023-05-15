@@ -22,54 +22,54 @@ Create Table Presentaciones(
 
 
 Create TABLE T_Profesores(
-	ID_TipoP int (1),
+	ID_TipoP serial,
 	Tiempo varchar(15),
-	Constraint pk_IDTipoP primary key (ID_TipoP)
+	 primary key (ID_TipoP)
 );
 Create table Tipo_Leccion(
-	ID_TipoL int (1),
+	ID_TipoL serial,
 	Tipo_Leccion varchar (20),
-	Constraint pk_IDTipoL primary key (ID_TipoL)
+	 primary key (ID_TipoL)
 );
 
 
 Create Table Lecciones(
-	ID_Leccion int (3),
+	ID_Leccion char (3),
 	Leccion varchar (20),
 	Horario_Ini time Not Null,
 	Horario_Fin time Not null,
-	creditos int (2),
-	Tipo_Leccion int (2),
+	creditos int,
+	Tipo_Leccion int,
 	Constraint pk_IDLeccion primary key (ID_Leccion),
 	foreign key (Tipo_Leccion) references Tipo_Leccion(ID_TipoL) on delete cascade
 );
 
 CREATE TABLE Profesor(
-	Matricula_P  serial,
-	Remuneracion int (3),
-	T_Profesores int (1),
+	Matricula_P  Char (3),
+	Remuneracion int ,
+	T_Profesores int,
 	Correo_Inst varchar (35),
 	PRIMARY KEY(Matricula_P),
 	foreign key (T_Profesores) references T_Profesores(ID_TipoP) on delete cascade
 )INHERITS (Mutante);
 
 Create Table CursoProf(
-	Matricula_Prof int(2),
-	ID_Leccion int (3),
+	Matricula_Prof char(3),
+	ID_Leccion char (3),
 	semestre varchar (15),
 	foreign key (Matricula_Prof) references Profesor(Matricula_P),
 	foreign key (ID_Leccion) references Lecciones(ID_Leccion) on delete cascade 
 );
 
 CREATE TABLE Estudiantes(
-	Matricula Serial,
+	Matricula char(3),
 	Correo_Inst varchar(35),
 	PRIMARY KEY(Matricula)
 )INHERITS (Mutante);
 
 Create Table Curso(
-	ID_Est int (2),
-	ID_Leccion int (3),
+	ID_Est char(3),
+	ID_Leccion char (3),
 	calificacion decimal(10,2),
 	foreign key (ID_Est) references Estudiantes(Matricula),
 	foreign key (ID_Leccion) references Lecciones(ID_Leccion) on delete cascade
