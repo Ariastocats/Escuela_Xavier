@@ -1,21 +1,23 @@
 package Datos;
-import Modelo.MutanteJB;
+import Modelo.EstudianteJB;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class MutanteDAO {
-	public static final String selectSQL = "SELECT * FROM Mutante";
-	public static final String insertSQL = "Insert into Mutante(Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rol) VALUES (?,?,?,?,?,?,?,?,?)";
-	public static final String updateSQL = "UPDATE Mutante SET Nombre=?,Apellido_Pat=?,Apellido_Mat=?,Poder=?,N_Alias=?,fecha_nac=?,cel=?,direcc=?,Rol=? WHERE Curp=?";
-	public static final String deleteSQL = "DELETE FROM Mutante WHERE Curp=?";
+
+import Modelo.ProfesorJB;
+public class EstudianteDAO {
+	public static final String selectSQL = "SELECT * FROM Estudiante";
+	public static final String insertSQL = "Insert into Estudiante(Curp,Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rol,Correo_Inst,Contraseña,Status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String updateSQL = "UPDATE Estudiante SET Curp=?,Nombre=?,Apellido_Pat=?,Apellido_Mat=?,Poder=?,N_Alias=?,fecha_nac=?,cel=?,direcc=?,Rol=?,Correo_Inst=?,Contraseña=?,Status=? WHERE Matricula=?";
+	public static final String deleteSQL = "DELETE FROM Estudiante WHERE Matricula=?";
 	
-	public List<MutanteJB> seleccionar(){
+	public List<EstudianteJB> seleccionar(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
-		MutanteJB con = null;
+		EstudianteJB con = null;
 		
-		List<MutanteJB> Mutantes = new ArrayList<>();
+		List<EstudianteJB> est = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -33,15 +35,19 @@ public class MutanteDAO {
 				String cel = result.getString("cel");
 				String direcc=result.getString("direcc");
 				int Rol=result.getInt("Rol");
+				int Matricula=result.getInt("Matricula");
+				String Correo_Inst = result.getString("Correo_Inst");
+				String Contraseña = result.getString("Contraseña");
+				String Status = result.getString("Status");
 				
-				con = new MutanteJB(Curp,Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rol);
-				Mutantes.add(con);
+				con = new EstudianteJB(Curp,Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rol,Matricula,Correo_Inst,Contraseña,Status);
+				est.add(con);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
 			Conexion.close(conn);
 			
-			for(MutanteJB c: Mutantes) {
+			for(EstudianteJB c: est) {
 				System.out.println("Curp: " + c.getCurp());
 				System.out.println("Nombre: " + c.getNombre());
 				System.out.println("Apellido paterno: " + c.getApellido_Pat());
@@ -52,6 +58,10 @@ public class MutanteDAO {
 				System.out.println("Numero de celular: " + c.getCel());
 				System.out.println("Direccion: " + c.getDirecc());
 				System.out.println("Tipo de usuario: " + c.getRol());
+				System.out.println("Matricula De Profesor: " + c.getMatricula());
+				System.out.println("Correo: " + c.getCorreo_Inst());
+				System.out.println("Contraseña: " + c.getContraseña());
+				System.out.println("Status: " + c.getStatus());
 				System.out.println("\n");
 			}
 			
@@ -59,12 +69,10 @@ public class MutanteDAO {
 			e.printStackTrace();
 		}
 		
-		return Mutantes;
-
-		
+		return est;
 	}
 	
-	public int agregar(MutanteJB Mutantes) {
+	public int agregar(EstudianteJB est) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -72,16 +80,19 @@ public class MutanteDAO {
 		try {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(insertSQL);
-			
-			state.setString(1,Mutantes.getNombre());
-			state.setString(2,Mutantes.getApellido_Pat());
-			state.setString(3,Mutantes.getApellido_Mat());
-			state.setString(4,Mutantes.getPoder());
-			state.setString(5,Mutantes.getN_Alias());
-			state.setString(6,Mutantes.getFecha_nac());
-			state.setString(7,Mutantes.getCel());
-			state.setString(8,Mutantes.getDirecc());
-			state.setInt(9,Mutantes.getRol());
+			state.setInt(1,est.getCurp());
+			state.setString(2,est.getNombre());
+			state.setString(3,est.getApellido_Pat());
+			state.setString(4,est.getApellido_Mat());
+			state.setString(5,est.getPoder());
+			state.setString(6,est.getN_Alias());
+			state.setString(7,est.getFecha_nac());
+			state.setString(8,est.getCel());
+			state.setString(9,est.getDirecc());
+			state.setInt(10,est.getRol());
+			state.setString(11,est.getCorreo_Inst());
+			state.setString(12,est.getContraseña());
+			state.setString(13,est.getStatus());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
@@ -90,7 +101,7 @@ public class MutanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			MutanteJB mutanteNvo = new MutanteJB();
+			EstudianteJB estudianteNvo = new EstudianteJB();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -98,7 +109,7 @@ public class MutanteDAO {
 		return registros;
 	}
 	
-	public int borrar(MutanteJB Mutantes) {
+	public int borrar(EstudianteJB est) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -107,7 +118,7 @@ public class MutanteDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,Mutantes.getCurp());
+			state.setInt(1,est.getMatricula());
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -116,7 +127,7 @@ public class MutanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			MutanteJB mutanteDelete = new MutanteJB();
+			ProfesorJB estudianteDelete = new ProfesorJB();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,7 +135,7 @@ public class MutanteDAO {
 		return registros;
 	}
 	
-	public int modificar(MutanteJB Mutantes) {
+	public int modificar(EstudianteJB est) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -132,18 +143,20 @@ public class MutanteDAO {
 		try {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(updateSQL);
-			
-			state.setString(1,Mutantes.getNombre());
-			state.setString(2,Mutantes.getApellido_Pat());
-			state.setString(3,Mutantes.getApellido_Mat());
-			state.setString(4,Mutantes.getPoder());
-			state.setString(5,Mutantes.getN_Alias());
-			state.setString(6,Mutantes.getFecha_nac());
-			state.setString(7,Mutantes.getCel());
-			state.setString(8,Mutantes.getDirecc());
-			state.setInt(9,Mutantes.getRol());
-			state.setInt(10,Mutantes.getCurp());
-			
+			state.setInt(1,est.getCurp());
+			state.setString(2,est.getNombre());
+			state.setString(3,est.getApellido_Pat());
+			state.setString(4,est.getApellido_Mat());
+			state.setString(5,est.getPoder());
+			state.setString(6,est.getN_Alias());
+			state.setString(7,est.getFecha_nac());
+			state.setString(8,est.getCel());
+			state.setString(9,est.getDirecc());
+			state.setInt(10,est.getRol());
+			state.setString(13,est.getCorreo_Inst());
+			state.setString(14,est.getContraseña());
+			state.setString(15,est.getStatus());
+			state.setInt(16,est.getMatricula());
 			
 			registros = state.executeUpdate();
 			if(registros>0)
@@ -151,7 +164,7 @@ public class MutanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			MutanteJB mutanteMod = new MutanteJB();
+			EstudianteJB estudianteMod = new EstudianteJB();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -159,5 +172,5 @@ public class MutanteDAO {
 		return registros;
 	}
 
-	
+
 }
