@@ -11,6 +11,7 @@ public class LeccionesDAO {
 	public static final String insertSQL = "Insert into Lecciones(Leccion,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion) VALUES (?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE Lecciones SET Leccion=?,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion WHERE ID_Leccion=?";
 	public static final String deleteSQL = "DELETE FROM Lecciones WHERE ID_Leccion=?";
+	public static final String lecjoin="SELECT estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula";
 	
 	public List<LeccionesJB> seleccionar(){
         Connection conn = null;
@@ -47,6 +48,50 @@ public class LeccionesDAO {
 				System.out.println("Horario de Salida: " + c.getHora_Fin());
 				System.out.println("Creditos: " + c.getCreditos());
 				System.out.println("Id de la Leccion: " + c.getTipo_Leccion());
+				
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return lec;
+
+		
+	}
+	
+	public List<LeccionesJB> lecjoin(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+		LeccionesJB con = null;
+		
+		List<LeccionesJB> lec = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(lecjoin);
+			
+			while(result.next()) {
+				String nombre = result.getString("nombre");
+				String Leccion=result.getString("Leccion");
+				int creditos=result.getInt("creditos");
+				float calif=result.getInt("calif");
+				
+				con = new LeccionesJB(nombre,Leccion,creditos,calif);
+				lec.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(LeccionesJB c: lec) {
+				System.out.println("nombre del alumno: " + c.getNombre());
+				System.out.println("Leccion: " + c.getLeccion());
+				System.out.println("Creditos: " + c.getCreditos());
+				System.out.println("Calificacion: " + c.getCalif());
 				
 				System.out.println("\n");
 			}

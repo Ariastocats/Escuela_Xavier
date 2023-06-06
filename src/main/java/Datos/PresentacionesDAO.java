@@ -9,6 +9,7 @@ public class PresentacionesDAO {
 	public static final String insertSQL = "Insert into Presentaciones(Presentacion,Dia,Horario) VALUES (?,?,?)";
 	public static final String updateSQL = "UPDATE Presentaciones SET Presentacion=?,Dia=?,Horario=? WHERE N_Presentacion=?";
 	public static final String deleteSQL = "DELETE FROM Presentaciones WHERE N_Presentaciones=?";
+	public static final String joinpres="SELECT presentaciones.n_presentacion,presentaciones.presentacion,presentaciones.dia,presentaciones.horario,count(mutante.nombre) as Asistentes from presentaciones join asist_presentacion on presentaciones.n_presentacion=asist_presentacion.n_presentacion join only mutante on asist_presentacion.curp=mutante.curp join rol on mutante.rol=rol.id_rol group by presentaciones.n_presentacion order by presentaciones.n_presentacion asc ";
 	
 	public List<PresentacionesJB> seleccionar(){
         Connection conn = null;
@@ -41,6 +42,51 @@ public class PresentacionesDAO {
 				System.out.println("Nombre de presentacion: " + c.getPresentacion());
 				System.out.println("Dia: " + c.getDia());
 				System.out.println("Hora: " + c.getHorario());
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return presentaciones;
+
+		
+	}
+	
+	public List<PresentacionesJB> joinpres(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+		PresentacionesJB con = null;
+		
+		List<PresentacionesJB> presentaciones = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(joinpres);
+			
+			while(result.next()) {
+				int N_Presentacion = result.getInt("N_Presentacion");
+				String Presentacion = result.getString("Presentacion");
+				String Dia = result.getString("Dia");
+				String Horario = result.getString("Horario");
+				int asist=result.getInt("Asistentes");
+				
+				con = new PresentacionesJB(N_Presentacion,Presentacion,Dia,Horario,asist);
+				presentaciones.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(PresentacionesJB c: presentaciones) {
+				System.out.println("ID de presentaciones: " + c.getN_Presentacion());
+				System.out.println("Nombre de presentacion: " + c.getPresentacion());
+				System.out.println("Dia: " + c.getDia());
+				System.out.println("Hora: " + c.getHorario());
+				System.out.println("Asistentes: " + c.getAsist());
 				System.out.println("\n");
 			}
 			

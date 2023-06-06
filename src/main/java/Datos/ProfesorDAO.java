@@ -9,6 +9,7 @@ public class ProfesorDAO {
 	public static final String insertSQL = "Insert into Profesor(Curp,Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rol,Remuneracion,T_Profesores,Correo_Inst,Contraseña,Status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE Profesor SET Curp=?,Nombre=?,Apellido_Pat=?,Apellido_Mat=?,Poder=?,N_Alias=?,fecha_nac=?,cel=?,direcc=?,Rol=?,Remuneracion=?,T_Profesores=?,Correo_Inst=?,Contraseña=?,Status=? WHERE Matricula_P=?";
 	public static final String deleteSQL = "DELETE FROM Profesor WHERE Matricula_P=?";
+	public static final String joinprof="SELECT profesor.curp,profesor.nombre,profesor.apellido_pat,profesor.apellido_mat,profesor.poder,profesor.n_alias,profesor.fecha_nac,profesor.cel,profesor.direcc, rol.rol as Rols,profesor.matricula_p,profesor.remuneracion,t_profesores.tiempo as T_Profesor, profesor.correo_inst,profesor.contraseña,profesor.status FROM profesor JOIN rol ON profesor.rol=rol.id_rol join t_profesores on profesor.t_profesores=t_profesores.id_tipop";
 	
 	public List<ProfesorJB> seleccionar(){
         Connection conn = null;
@@ -62,6 +63,71 @@ public class ProfesorDAO {
 				System.out.println("Matricula De Profesor: " + c.getMatricula_P());
 				System.out.println("Remuneracion: " + c.getRemuneracion());
 				System.out.println("Tipo de Profesor: " + c.getT_Profesores());
+				System.out.println("Correo: " + c.getCorreo_Inst());
+				System.out.println("Contraseña: " + c.getContraseña());
+				System.out.println("Status: " + c.getStatus());
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return profesores;
+	}
+	
+	public List<ProfesorJB> joinprof(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+		ProfesorJB con = null;
+		
+		List<ProfesorJB> profesores = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(joinprof);
+			
+			while(result.next()) {
+				int Curp = result.getInt("Curp");
+				String Nombre = result.getString("Nombre");
+				String Apellido_Pat = result.getString("Apellido_Pat");
+				String Apellido_Mat = result.getString("Apellido_Mat");
+				String Poder = result.getString("Poder");
+				String N_Alias= result.getString("N_Alias");
+				String fecha_nac = result.getString("fecha_nac");
+				String cel = result.getString("cel");
+				String direcc=result.getString("direcc");
+				String Rols=result.getString("Rols");
+				int Matricula_P=result.getInt("Matricula_P");
+				int Remuneracion=result.getInt("Remuneracion");
+				String T_Profesor = result.getString("T_Profesor");
+				String Correo_Inst = result.getString("Correo_Inst");
+				String Contraseña = result.getString("Contraseña");
+				String Status = result.getString("Status");
+				
+				con = new ProfesorJB(Curp,Nombre,Apellido_Pat,Apellido_Mat,Poder,N_Alias,fecha_nac,cel,direcc,Rols,Matricula_P,Remuneracion,T_Profesor,Correo_Inst,Contraseña,Status);
+				profesores.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(ProfesorJB c: profesores) {
+				System.out.println("Curp: " + c.getCurp());
+				System.out.println("Nombre: " + c.getNombre());
+				System.out.println("Apellido paterno: " + c.getApellido_Pat());
+				System.out.println("Apellido materno: " + c.getApellido_Mat());
+				System.out.println("Poder: " + c.getPoder());
+				System.out.println("Alias: " + c.getN_Alias());
+				System.out.println("Fecha de Nacimiento: " + c.getFecha_nac());
+				System.out.println("Numero de celular: " + c.getCel());
+				System.out.println("Direccion: " + c.getDirecc());
+				System.out.println("Tipo de usuario: " + c.getRols());
+				System.out.println("Matricula De Profesor: " + c.getMatricula_P());
+				System.out.println("Remuneracion: " + c.getRemuneracion());
+				System.out.println("Tipo de Profesor: " + c.getT_Profesor());
 				System.out.println("Correo: " + c.getCorreo_Inst());
 				System.out.println("Contraseña: " + c.getContraseña());
 				System.out.println("Status: " + c.getStatus());
