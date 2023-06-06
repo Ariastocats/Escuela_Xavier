@@ -13,6 +13,9 @@ public class MutanteJB implements Serializable {
 	private String cel;
 	private String direcc;
 	private int Rol;
+	//rol string para el constructor
+	private String Rols;
+	
 	
 	public MutanteJB(){
 		
@@ -30,6 +33,22 @@ public class MutanteJB implements Serializable {
 		this.cel=cel;
 		this.direcc=direcc;
 		this.Rol=Rol;
+		
+	}
+	
+	public MutanteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,String fechanac,String cel,String direcc, String Rols) {
+		
+		this.Curp=Curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rols=Rols;
 		
 	}
 	
@@ -111,6 +130,13 @@ public class MutanteJB implements Serializable {
 
 	public void setRol(int rol) {
 	    Rol = rol;
+	}
+	
+	public String getRols() {
+		return Rols;
+	}
+	public void setRols(String rols) {
+		Rols = rols;
 	}
 	
 }

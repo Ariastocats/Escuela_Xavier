@@ -8,6 +8,11 @@ public class LeccionesJB implements Serializable{
 	private String Hora_Fin;
 	private int creditos;
 	private int Tipo_Leccion;
+	//leccionesjoin
+	private String nombre;
+	
+
+	private float calif;
 	
 	public LeccionesJB(){
 		
@@ -19,6 +24,26 @@ public class LeccionesJB implements Serializable{
 		this.Hora_Fin=HoraFin;
 		this.creditos=creditos;
 		this.Tipo_Leccion=TipoLeccion;
+	}
+	
+	public LeccionesJB(String nombre,String Leccion,int creditos,float calif){
+		this.nombre=nombre;
+		this.Leccion=Leccion;
+		this.creditos=creditos;
+		this.calif=calif;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public float getCalif() {
+		return calif;
+	}
+	public void setCalif(float calif) {
+		this.calif = calif;
 	}
 	
 	public int getID_Leccion() {

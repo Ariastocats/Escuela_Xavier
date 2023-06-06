@@ -18,6 +18,10 @@ public class ProfesorJB implements Serializable{
 	private String Correo_Inst;
 	private String Contraseña;
 	private String Status;
+	//Agregar para los strings
+	private String Rols;
+	private String T_Profesor;
+	
 	
 	public ProfesorJB() {
 		
@@ -38,6 +42,28 @@ public class ProfesorJB implements Serializable{
 		this.Matricula_P=MatriculaP;
 		this.Remuneracion=Remuneracion;
 		this.T_Profesores=TProfesores;
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	
+	public ProfesorJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,String fechanac,String cel,String direcc, String Rols,int MatriculaP,int Remuneracion,
+			String T_Profesor,String CorreoInst,String Contraseña,String Status) {
+		this.Curp=Curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rols=Rols;
+		this.Matricula_P=MatriculaP;
+		this.Remuneracion=Remuneracion;
+		this.T_Profesor=T_Profesor;
 		this.Correo_Inst=CorreoInst;
 		this.Contraseña=Contraseña;
 		this.Status=Status;
@@ -170,6 +196,19 @@ public class ProfesorJB implements Serializable{
 
 	public void setStatus(String status) {
 	    Status = status;
+	}
+	
+	public String getRols() {
+		return Rols;
+	}
+	public void setRols(String rols) {
+		Rols = rols;
+	}
+	public String getT_Profesor() {
+		return T_Profesor;
+	}
+	public void setT_Profesor(String t_Profesor) {
+		T_Profesor = t_Profesor;
 	}
 
 

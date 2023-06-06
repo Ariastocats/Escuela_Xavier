@@ -17,7 +17,11 @@ public class EstudianteJB implements Serializable{
 	private String Correo_Inst;
 	private String Contraseña;
 	private String Status;
+	//para el rol
+	private String Rols;
 	
+	
+
 	public EstudianteJB() {
 		
 	}
@@ -36,6 +40,27 @@ public class EstudianteJB implements Serializable{
 		this.cel=cel;
 		this.direcc=direcc;
 		this.Rol=Rol;
+		this.Matricula=Matricula;
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	
+	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,String fechanac,String cel,String direcc, String Rols,int Matricula,String CorreoInst,
+			String Contraseña,String Status) {
+		
+		this.Curp=Curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rols=Rols;
 		this.Matricula=Matricula;
 		this.Correo_Inst=CorreoInst;
 		this.Contraseña=Contraseña;
@@ -153,6 +178,14 @@ public class EstudianteJB implements Serializable{
 
 	public void setStatus(String status) {
 	    Status = status;
+	}
+	
+	public String getRols() {
+		return Rols;
+	}
+
+	public void setRols(String rols) {
+		Rols = rols;
 	}
 
 
