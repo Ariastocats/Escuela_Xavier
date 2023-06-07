@@ -17,6 +17,7 @@
 		
 		<thead>
             <tr>
+            	<th>Matricula de Profesor </th>
                 <th>curp </th>
                 <th>Nombre </th>
                 <th>Apellido Paterno </th>
@@ -27,7 +28,7 @@
                 <th>celular </th>
                 <th>Direccion </th>
                 <th>Rol </th>
-                <th>Matricula de Profesor </th>
+                
                 <th>Remuneracion </th>
                 <th>Tipo de Profesor </th>
                 <th>Correo institucional </th>
@@ -46,6 +47,7 @@
         	for (ProfesorJB prof : lista){
         %>
             <tr>
+            	<td><%out.print(prof.getMatricula_P());%></td>
             	<td><%out.print(prof.getCurp()); %></td>
             	<td><%out.print(prof.getNombre());%></td>
             	<td><%out.print(prof.getApellido_Pat());%></td>
@@ -55,10 +57,10 @@
             	<td><%out.print(prof.getFecha_nac());%></td>
             	<td><%out.print(prof.getCel());%></td>
             	<td><%out.print(prof.getDirecc()); %></td>
-            	<td><%out.print(prof.getRol());%></td>
-            	<td><%out.print(prof.getMatricula_P());%></td>
+            	<td><%out.print(prof.getRols());%></td>
+            	
             	<td><%out.print(prof.getRemuneracion());%></td>
-            	<td><%out.print(prof.getT_Profesores());%></td>
+            	<td><%out.print(prof.getT_Profesor());%></td>
             	<td><%out.print(prof.getCorreo_Inst()); %></td>
             	<td><%out.print(prof.getContraseña());%></td>
             	
