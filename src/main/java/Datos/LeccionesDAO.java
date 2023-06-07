@@ -11,7 +11,8 @@ public class LeccionesDAO {
 	public static final String insertSQL = "Insert into Lecciones(Leccion,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion) VALUES (?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE Lecciones SET Leccion=?,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion WHERE ID_Leccion=?";
 	public static final String deleteSQL = "DELETE FROM Lecciones WHERE ID_Leccion=?";
-	public static final String lecjoin="SELECT estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula";
+	public static final String lecjoin="SELECT estudiantes.matricula as matricula,estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula";
+	public static final String select="Select lecciones.id_leccion,lecciones.leccion,lecciones.horario_ini,lecciones.horario_fin,lecciones.creditos,tipo_leccion.tipo_leccion as tipoleccion from lecciones join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol";
 	
 	public List<LeccionesJB> seleccionar(){
         Connection conn = null;
@@ -61,6 +62,54 @@ public class LeccionesDAO {
 		
 	}
 	
+	public List<LeccionesJB> select(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+		LeccionesJB con = null;
+		
+		List<LeccionesJB> lec = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(select);
+			
+			while(result.next()) {
+				int ID_Leccion = result.getInt("ID_Leccion");
+				String Leccion=result.getString("Leccion");
+				String Horario_Ini=result.getString("Horario_Ini");
+				String Horario_Fin=result.getString("Horario_Fin");
+				int creditos=result.getInt("creditos");
+				String tipoleccion=result.getString("tipoleccion");
+				
+				con = new LeccionesJB(ID_Leccion,Leccion,Horario_Ini,Horario_Fin,creditos,tipoleccion);
+				lec.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(LeccionesJB c: lec) {
+				System.out.println("Id de la Leccion: " + c.getID_Leccion());
+				System.out.println("Leccion: " + c.getLeccion());
+				System.out.println("Horario de inicio: " + c.getHora_Ini());
+				System.out.println("Horario de Salida: " + c.getHora_Fin());
+				System.out.println("Creditos: " + c.getCreditos());
+				System.out.println("Id de la Leccion: " + c.getTipoleccion());
+				
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return lec;
+
+		
+	}
+	
 	public List<LeccionesJB> lecjoin(){
         Connection conn = null;
         Statement state = null;
@@ -75,12 +124,13 @@ public class LeccionesDAO {
             result = state.executeQuery(lecjoin);
 			
 			while(result.next()) {
+				int matri=result.getInt("matricula");
 				String nombre = result.getString("nombre");
 				String Leccion=result.getString("Leccion");
 				int creditos=result.getInt("creditos");
 				float calif=result.getInt("calif");
 				
-				con = new LeccionesJB(nombre,Leccion,creditos,calif);
+				con = new LeccionesJB(matri,nombre,Leccion,creditos,calif);
 				lec.add(con);
 			}
 			Conexion.close(result);
@@ -88,6 +138,7 @@ public class LeccionesDAO {
 			Conexion.close(conn);
 			
 			for(LeccionesJB c: lec) {
+				System.out.println("matricula de alumno: " + c.getMatri());
 				System.out.println("nombre del alumno: " + c.getNombre());
 				System.out.println("Leccion: " + c.getLeccion());
 				System.out.println("Creditos: " + c.getCreditos());
