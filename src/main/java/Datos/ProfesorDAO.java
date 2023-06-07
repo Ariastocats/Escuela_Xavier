@@ -10,6 +10,7 @@ public class ProfesorDAO {
 	public static final String updateSQL = "UPDATE Profesor SET Curp=?,Nombre=?,Apellido_Pat=?,Apellido_Mat=?,Poder=?,N_Alias=?,fecha_nac=?,cel=?,direcc=?,Rol=?,Remuneracion=?,T_Profesores=?,Correo_Inst=?,Contraseña=?,Status=? WHERE Matricula_P=?";
 	public static final String deleteSQL = "DELETE FROM Profesor WHERE Matricula_P=?";
 	public static final String joinprof="SELECT profesor.curp,profesor.nombre,profesor.apellido_pat,profesor.apellido_mat,profesor.poder,profesor.n_alias,profesor.fecha_nac,profesor.cel,profesor.direcc, rol.rol as Rols,profesor.matricula_p,profesor.remuneracion,t_profesores.tiempo as T_Profesor, profesor.correo_inst,profesor.contraseña,profesor.status FROM profesor JOIN rol ON profesor.rol=rol.id_rol join t_profesores on profesor.t_profesores=t_profesores.id_tipop";
+	public static final String joinprle="SELECT profesor.matricula_p,profesor.nombre,lecciones.leccion as leccion,tipo_leccion.tipo_leccion as lecciont,profesor.remuneracion from lecciones inner join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol inner join cursoprof on lecciones.id_leccion=cursoprof.id_leccion inner join profesor on cursoprof.matricula_prof=profesor.matricula_p order by profesor.matricula_p asc";
 	
 	public List<ProfesorJB> seleccionar(){
         Connection conn = null;
@@ -131,6 +132,51 @@ public class ProfesorDAO {
 				System.out.println("Correo: " + c.getCorreo_Inst());
 				System.out.println("Contraseña: " + c.getContraseña());
 				System.out.println("Status: " + c.getStatus());
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return profesores;
+	}
+	
+	public List<ProfesorJB> joinprle(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+		ProfesorJB con = null;
+		
+		List<ProfesorJB> profesores = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(joinprle);
+			
+			while(result.next()) {
+				int Matricula_P = result.getInt("Matricula_P");
+				String Nombre = result.getString("Nombre");
+				String leccion=result.getString("leccion");
+				String lecciont=result.getString("lecciont");
+				int Remuneracion=result.getInt("Remuneracion");
+				
+				
+				
+				con = new ProfesorJB(Matricula_P,Nombre,leccion,lecciont,Remuneracion);
+				profesores.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(ProfesorJB c: profesores) {
+				System.out.println("Matricula de profesor: " + c.getMatricula_P());
+				System.out.println("Nombre: " + c.getNombre());
+				System.out.println("leccion: " + c.getLeccion());
+				System.out.println("leccion tipo: " + c.getLecciont());
+				System.out.println("Remuneracion: " + c.getRemuneracion());
 				System.out.println("\n");
 			}
 			
