@@ -1,12 +1,16 @@
 package Modelo;
 
+
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Date;
+
 public class PresentacionesJB implements Serializable{
 	
 	private int N_Presentacion;
 	private String Presentacion;
-	private String Dia;
-	private String Horario;
+	private Date Dia;
+	private Time Horario;
 	//strings
 	private String nombre;
 	private String Rols;
@@ -17,7 +21,7 @@ public class PresentacionesJB implements Serializable{
 	public PresentacionesJB() {
 		
 	}
-	public PresentacionesJB(int NPresentacion,String Presentacion,String Dia,String Horario) {
+	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario) {
 		this.N_Presentacion=NPresentacion;
 		this.Presentacion=Presentacion;
 		this.Dia=Dia;
@@ -26,7 +30,7 @@ public class PresentacionesJB implements Serializable{
 		
 	}
 	
-	public PresentacionesJB(int NPresentacion,String Presentacion,String Dia,String Horario,int asist) {
+	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario,int asist) {
 		this.N_Presentacion=NPresentacion;
 		this.Presentacion=Presentacion;
 		this.Dia=Dia;
@@ -37,6 +41,11 @@ public class PresentacionesJB implements Serializable{
 		
 	}
 	
+	public PresentacionesJB(String Presentacion,Date Dia, Time Horario) {
+		this.Presentacion=Presentacion;
+		this.Dia=Dia;
+		this.Horario=Horario;
+	}
 	public int getAsist() {
 		return asist;
 	}
@@ -73,19 +82,19 @@ public class PresentacionesJB implements Serializable{
 	    Presentacion = presentacion;
 	}
 	
-	public String getDia() {
+	public Date getDia() {
 	    return Dia;
 	}
 
-	public void setDia(String dia) {
+	public void setDia(Date dia) {
 	    Dia = dia;
 	}
 	
-	public String getHorario() {
+	public Time getHorario() {
 	    return Horario;
 	}
 
-	public void setHorario(String horario) {
+	public void setHorario(Time horario) {
 	    Horario = horario;
 	}
 	
