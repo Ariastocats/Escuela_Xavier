@@ -9,9 +9,9 @@ public class LeccionesJB implements Serializable{
 	private int creditos;
 	private int Tipo_Leccion;
 	//leccionesjoin
+	private String tipoleccion;
 	private String nombre;
-	
-
+	private int matri;
 	private float calif;
 	
 	public LeccionesJB(){
@@ -26,7 +26,17 @@ public class LeccionesJB implements Serializable{
 		this.Tipo_Leccion=TipoLeccion;
 	}
 	
-	public LeccionesJB(String nombre,String Leccion,int creditos,float calif){
+	public LeccionesJB(int IDLeccion,String Leccion,String HoraIni,String HoraFin,int creditos,String tipoleccion){
+		this.ID_Leccion=IDLeccion;
+		this.Leccion=Leccion;
+		this.Hora_Ini=HoraIni;
+		this.Hora_Fin=HoraFin;
+		this.creditos=creditos;
+		this.tipoleccion=tipoleccion;
+	}
+	
+	public LeccionesJB(int matri,String nombre,String Leccion,int creditos,float calif){
+		this.matri=matri;
 		this.nombre=nombre;
 		this.Leccion=Leccion;
 		this.creditos=creditos;
@@ -93,6 +103,21 @@ public class LeccionesJB implements Serializable{
 	public void setTipo_Leccion(int tipoLeccion) {
 	    Tipo_Leccion = tipoLeccion;
 	}
+	
+	public int getMatri() {
+		return matri;
+	}
+	public void setMatri(int matricula) {
+		this.matri = matricula;
+	}
+	
+	public String getTipoleccion() {
+		return tipoleccion;
+	}
+	public void setTipoleccion(String tipoleccion) {
+		this.tipoleccion = tipoleccion;
+	}
+
 
 
 }
