@@ -52,7 +52,10 @@
         %>
         
         </table>
-
+		
+		<form action="PresentacionesAgregar.jsp">
+		 <input id="agregarPres" type="submit" value="Agregar nueva presentacion">
+		</form>
     	
 	</body>
 	
