@@ -17,6 +17,7 @@
 		
 		<thead>
             <tr>
+           	 	<th>Matricula de Estudiante </th>
                 <th>curp </th>
                 <th>Nombre </th>
                 <th>Apellido Paterno </th>
@@ -27,7 +28,7 @@
                 <th>celular </th>
                 <th>Direccion </th>
                 <th>Rol </th>
-                <th>Matricula de Estudiante </th>
+                
                 <th>Correo institucional </th>
                 <th>Contraseña </th>
                  <th>Status </th>
@@ -43,6 +44,7 @@
         	for (EstudianteJB est : lista){
         %>
             <tr>
+            	<td><%out.print(est.getMatricula());%></td>
             	<td><%out.print(est.getCurp()); %></td>
             	<td><%out.print(est.getNombre());%></td>
             	<td><%out.print(est.getApellido_Pat());%></td>
@@ -52,8 +54,7 @@
             	<td><%out.print(est.getFecha_nac());%></td>
             	<td><%out.print(est.getCel());%></td>
             	<td><%out.print(est.getDirecc()); %></td>
-            	<td><%out.print(est.getRol());%></td>
-            	<td><%out.print(est.getMatricula());%></td>
+            	<td><%out.print(est.getRols());%></td>
             	<td><%out.print(est.getCorreo_Inst());%></td>
             	<td><%out.print(est.getContraseña()); %></td>
             	<td><%out.print(est.getStatus());%></td>
