@@ -17,6 +17,7 @@
 		
 		<thead>
             <tr>
+            	<th>Matricula de estudiante </th>
                 <th>Estudiante </th>
                 <th>Leccion </th>
                 <th>Creditos </th>
@@ -33,6 +34,7 @@
         	for (LeccionesJB lec : lista){
         %>
             <tr>
+            	<td><%out.print(lec.getMatri()); %></td>
             	<td><%out.print(lec.getNombre()); %></td>
             	<td><%out.print(lec.getLeccion());%></td>
             	<td><%out.print(lec.getCreditos());%></td>
