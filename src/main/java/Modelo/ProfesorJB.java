@@ -21,6 +21,10 @@ public class ProfesorJB implements Serializable{
 	//Agregar para los strings
 	private String Rols;
 	private String T_Profesor;
+	//string para lecciones
+	private String leccion;
+
+	private String lecciont;
 	
 	
 	public ProfesorJB() {
@@ -69,6 +73,16 @@ public class ProfesorJB implements Serializable{
 		this.Status=Status;
 		
 	}
+	
+	public ProfesorJB(int Matricula_P,String Nombre,String leccion,String lecciont,int Remuneracion) {
+		this.Matricula_P=Matricula_P;
+		this.Nombre=Nombre;
+		this.leccion=leccion;
+		this.lecciont=lecciont;
+		this.Remuneracion=Remuneracion;
+	}
+	
+	
 	
 	public int getCurp() {
 	    return Curp;
@@ -209,6 +223,19 @@ public class ProfesorJB implements Serializable{
 	}
 	public void setT_Profesor(String t_Profesor) {
 		T_Profesor = t_Profesor;
+	}
+	
+	public String getLeccion() {
+		return leccion;
+	}
+	public void setLeccion(String leccion) {
+		this.leccion = leccion;
+	}
+	public String getLecciont() {
+		return lecciont;
+	}
+	public void setLecciont(String lecciont) {
+		this.lecciont = lecciont;
 	}
 
 
