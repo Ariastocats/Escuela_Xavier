@@ -27,8 +27,8 @@ public class PresentacionesDAO {
 			while(result.next()) {
 				int N_Presentacion = result.getInt("N_Presentaciones");
 				String Presentacion = result.getString("Presentacion");
-				String Dia = result.getString("Dia");
-				String Horario = result.getString("Horario");
+				Date Dia = result.getDate("Dia");
+				Time Horario = result.getTime("Horario");
 				
 				con = new PresentacionesJB(N_Presentacion,Presentacion,Dia,Horario);
 				presentaciones.add(con);
@@ -70,8 +70,8 @@ public class PresentacionesDAO {
 			while(result.next()) {
 				int N_Presentacion = result.getInt("N_Presentacion");
 				String Presentacion = result.getString("Presentacion");
-				String Dia = result.getString("Dia");
-				String Horario = result.getString("Horario");
+				Date Dia = result.getDate("Dia");
+				Time Horario = result.getTime("Horario");
 				int asist=result.getInt("Asistentes");
 				
 				con = new PresentacionesJB(N_Presentacion,Presentacion,Dia,Horario,asist);
@@ -109,13 +109,17 @@ public class PresentacionesDAO {
 			state = conn.prepareStatement(insertSQL);
 			
 			state.setString(1,presentaciones.getPresentacion());
-			state.setString(2,presentaciones.getDia());
-			state.setString(3,presentaciones.getHorario());
+			state.setDate(2,(Date)presentaciones.getDia());
+			state.setTime(3,presentaciones.getHorario());
 			
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
 				System.out.println("Registro agregado correctamente");
+			}
+			else {
+				System.out.println("No se puedo agregar el registro");
+				
 			}
 			
 			Conexion.close(state);
@@ -164,8 +168,8 @@ public class PresentacionesDAO {
 			state = conn.prepareStatement(updateSQL);
 			
 			state.setString(1,presentaciones.getPresentacion());
-			state.setString(2,presentaciones.getDia());
-			state.setString(3,presentaciones.getHorario());
+			state.setDate(2,(Date)presentaciones.getDia());
+			state.setTime(3,presentaciones.getHorario());
 			state.setInt(4,presentaciones.getN_Presentacion());
 			
 			
