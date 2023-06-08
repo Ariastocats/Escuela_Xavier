@@ -8,7 +8,7 @@ public class PresentacionesDAO {
 	public static final String selectSQL = "SELECT * FROM Presentaciones";
 	public static final String insertSQL = "Insert into Presentaciones(Presentacion,Dia,Horario) VALUES (?,?,?)";
 	public static final String updateSQL = "UPDATE Presentaciones SET Presentacion=?,Dia=?,Horario=? WHERE N_Presentacion=?";
-	public static final String deleteSQL = "DELETE FROM Presentaciones WHERE N_Presentaciones=?";
+	public static final String deleteSQL = "DELETE FROM Presentaciones WHERE N_Presentacion=?";
 	public static final String joinpres="SELECT presentaciones.n_presentacion,presentaciones.presentacion,presentaciones.dia,presentaciones.horario,count(mutante.nombre) as Asistentes from presentaciones join asist_presentacion on presentaciones.n_presentacion=asist_presentacion.n_presentacion join only mutante on asist_presentacion.curp=mutante.curp join rol on mutante.rol=rol.id_rol group by presentaciones.n_presentacion order by presentaciones.n_presentacion asc ";
 	
 	public List<PresentacionesJB> seleccionar(){
@@ -25,7 +25,7 @@ public class PresentacionesDAO {
             result = state.executeQuery(selectSQL);
 			
 			while(result.next()) {
-				int N_Presentacion = result.getInt("N_Presentaciones");
+				int N_Presentacion = result.getInt("N_Presentacion");
 				String Presentacion = result.getString("Presentacion");
 				Date Dia = result.getDate("Dia");
 				Time Horario = result.getTime("Horario");
@@ -132,7 +132,7 @@ public class PresentacionesDAO {
 		return registros;
 	}
 	
-	public int borrar(PresentacionesJB presentaciones) {
+	public int borrar(int id_presentacion) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -141,7 +141,7 @@ public class PresentacionesDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,presentaciones.getN_Presentacion());
+			state.setInt(1,id_presentacion);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
