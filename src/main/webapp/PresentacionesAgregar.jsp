@@ -14,7 +14,7 @@
 
 
 
-    <form action="ServletPresentaciones" method="post">
+    <form action="ServletPresentacionesList" method="post">
 
         <label for="Presentacion"> Nombre de Presentacion </label>
         <input id="presentacion" type="text" name="presentacion">
