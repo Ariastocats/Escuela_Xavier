@@ -32,7 +32,7 @@ public class ProfesorDAO {
 				String Apellido_Mat = result.getString("Apellido_Mat");
 				String Poder = result.getString("Poder");
 				String N_Alias= result.getString("N_Alias");
-				String fecha_nac = result.getString("fecha_nac");
+				Date fecha_nac = result.getDate("fecha_nac");
 				String cel = result.getString("cel");
 				String direcc=result.getString("direcc");
 				int Rol=result.getInt("Rol");
@@ -97,7 +97,7 @@ public class ProfesorDAO {
 				String Apellido_Mat = result.getString("Apellido_Mat");
 				String Poder = result.getString("Poder");
 				String N_Alias= result.getString("N_Alias");
-				String fecha_nac = result.getString("fecha_nac");
+				Date fecha_nac = result.getDate("fecha_nac");
 				String cel = result.getString("cel");
 				String direcc=result.getString("direcc");
 				String Rols=result.getString("Rols");
@@ -201,7 +201,7 @@ public class ProfesorDAO {
 			state.setString(4,profesores.getApellido_Mat());
 			state.setString(5,profesores.getPoder());
 			state.setString(6,profesores.getN_Alias());
-			state.setString(7,profesores.getFecha_nac());
+			state.setDate(7,profesores.getFecha_nac());
 			state.setString(8,profesores.getCel());
 			state.setString(9,profesores.getDirecc());
 			state.setInt(10,profesores.getRol());
@@ -266,7 +266,7 @@ public class ProfesorDAO {
 			state.setString(4,profesores.getApellido_Mat());
 			state.setString(5,profesores.getPoder());
 			state.setString(6,profesores.getN_Alias());
-			state.setString(7,profesores.getFecha_nac());
+			state.setDate(7,profesores.getFecha_nac());
 			state.setString(8,profesores.getCel());
 			state.setString(9,profesores.getDirecc());
 			state.setInt(10,profesores.getRol());
