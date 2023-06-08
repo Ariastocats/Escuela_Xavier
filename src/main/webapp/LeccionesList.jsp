@@ -54,7 +54,15 @@
         %>
         
         </table>
-
+        
+        <form action="ServletLeccionesOpcion" method="get">
+		 <input id="agregarlec" type="submit" value="Agregar nueva Leccion">
+		</form>
+		
+		<form action="ServletEliminarLecciones" method="get">
+		 <input id="elimlec" type="text" name="id_leccion">
+		  <input id="btelimlec" type="submit" value="Elimnar leccion">
+		</form>
     	
 	</body>
 	
