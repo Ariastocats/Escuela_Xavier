@@ -1,6 +1,8 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 public class EstudianteJB implements Serializable{
 	
 	private int  Curp;
@@ -9,7 +11,7 @@ public class EstudianteJB implements Serializable{
 	private String Apellido_Mat;
 	private String Poder;
 	private String N_Alias;
-	private String fecha_nac;
+	private Date fecha_nac;
 	private String cel;
 	private String direcc;
 	private int Rol;
@@ -25,9 +27,9 @@ public class EstudianteJB implements Serializable{
 	public EstudianteJB() {
 		
 	}
-	
+	//completo
 	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, int Rol,int Matricula,String CorreoInst,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,int Matricula,String CorreoInst,
 			String Contraseña,String Status) {
 		
 		this.Curp=Curp;
@@ -46,9 +48,9 @@ public class EstudianteJB implements Serializable{
 		this.Status=Status;
 		
 	}
-	
+	//con el rol en string
 	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, String Rols,int Matricula,String CorreoInst,
+			String NAlias,Date fechanac,String cel,String direcc, String Rols,int Matricula,String CorreoInst,
 			String Contraseña,String Status) {
 		
 		this.Curp=Curp;
@@ -116,11 +118,11 @@ public class EstudianteJB implements Serializable{
 	    N_Alias = nAlias;
 	}
 	
-	public String getFecha_nac() {
+	public Date getFecha_nac() {
 	    return fecha_nac;
 	}
 
-	public void setFecha_nac(String fechanac) {
+	public void setFecha_nac(Date fechanac) {
 	    this.fecha_nac = fechanac;
 	}
 	
