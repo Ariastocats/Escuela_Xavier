@@ -30,8 +30,8 @@ public class LeccionesDAO {
 			while(result.next()) {
 				int ID_Leccion = result.getInt("ID_Leccion");
 				String Leccion=result.getString("Leccion");
-				String Horario_Ini=result.getString("Horario_Ini");
-				String Horario_Fin=result.getString("Horario_Fin");
+				Time Horario_Ini=result.getTime("Horario_Ini");
+				Time Horario_Fin=result.getTime("Horario_Fin");
 				int creditos=result.getInt("creditos");
 				int Tipo_Leccion=result.getInt("Tipo_Leccion");
 				
@@ -78,8 +78,8 @@ public class LeccionesDAO {
 			while(result.next()) {
 				int ID_Leccion = result.getInt("ID_Leccion");
 				String Leccion=result.getString("Leccion");
-				String Horario_Ini=result.getString("Horario_Ini");
-				String Horario_Fin=result.getString("Horario_Fin");
+				Time Horario_Ini=result.getTime("Horario_Ini");
+				Time Horario_Fin=result.getTime("Horario_Fin");
 				int creditos=result.getInt("creditos");
 				String tipoleccion=result.getString("tipoleccion");
 				
@@ -166,8 +166,8 @@ public class LeccionesDAO {
 			state = conn.prepareStatement(insertSQL);
 			
 			state.setString(1,lec.getLeccion());
-			state.setString(2,lec.getHora_Ini());
-			state.setString(3,lec.getHora_Fin());
+			state.setTime(2,lec.getHora_Ini());
+			state.setTime(3,lec.getHora_Fin());
 			state.setInt(4,lec.getCreditos());
 			state.setInt(5,lec.getTipo_Leccion());
 			
@@ -188,7 +188,7 @@ public class LeccionesDAO {
 		return registros;
 	}
 	
-	public int borrar(LeccionesJB lec) {
+	public int borrar(int id_leccion) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -197,7 +197,7 @@ public class LeccionesDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,lec.getID_Leccion());
+			state.setInt(1,id_leccion);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -224,8 +224,8 @@ public class LeccionesDAO {
 			state = conn.prepareStatement(updateSQL);
 			
 			state.setString(1,lec.getLeccion());
-			state.setString(2,lec.getHora_Ini());
-			state.setString(3,lec.getHora_Fin());
+			state.setTime(2,lec.getHora_Ini());
+			state.setTime(3,lec.getHora_Fin());
 			state.setInt(4,lec.getCreditos());
 			state.setInt(5,lec.getTipo_Leccion());
 			state.setInt(6,lec.getID_Leccion());
