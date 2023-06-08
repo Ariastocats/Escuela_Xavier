@@ -30,7 +30,7 @@ public class MutanteDAO {
 				String Apellido_Mat = result.getString("Apellido_Mat");
 				String Poder = result.getString("Poder");
 				String N_Alias= result.getString("N_Alias");
-				String fecha_nac = result.getString("fecha_nac");
+				Date fecha_nac = result.getDate("fecha_nac");
 				String cel = result.getString("cel");
 				String direcc=result.getString("direcc");
 				int Rol=result.getInt("Rol");
@@ -85,7 +85,7 @@ public class MutanteDAO {
 				String Apellido_Mat = result.getString("Apellido_Mat");
 				String Poder = result.getString("Poder");
 				String N_Alias= result.getString("N_Alias");
-				String fecha_nac = result.getString("fecha_nac");
+				Date fecha_nac = result.getDate("fecha_nac");
 				String cel = result.getString("cel");
 				String direcc=result.getString("direcc");
 				String Rols=result.getString("Rols");
@@ -134,7 +134,7 @@ public class MutanteDAO {
 			state.setString(3,Mutantes.getApellido_Mat());
 			state.setString(4,Mutantes.getPoder());
 			state.setString(5,Mutantes.getN_Alias());
-			state.setString(6,Mutantes.getFecha_nac());
+			state.setDate(6,Mutantes.getFecha_nac());
 			state.setString(7,Mutantes.getCel());
 			state.setString(8,Mutantes.getDirecc());
 			state.setInt(9,Mutantes.getRol());
@@ -194,7 +194,7 @@ public class MutanteDAO {
 			state.setString(3,Mutantes.getApellido_Mat());
 			state.setString(4,Mutantes.getPoder());
 			state.setString(5,Mutantes.getN_Alias());
-			state.setString(6,Mutantes.getFecha_nac());
+			state.setDate(6,Mutantes.getFecha_nac());
 			state.setString(7,Mutantes.getCel());
 			state.setString(8,Mutantes.getDirecc());
 			state.setInt(9,Mutantes.getRol());
