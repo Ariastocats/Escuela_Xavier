@@ -27,6 +27,10 @@
     		</form>
     		
     		<form action="ServletPresentaciones" method="get">
+        		<input type="submit" name="presasisver" value="Ver Presentaciones y asistencias">
+    		</form>
+    		
+    		<form action="ServletPresentacionesList" method="get">
         		<input type="submit" name="presver" value="Ver Presentaciones">
     		</form>
     		
