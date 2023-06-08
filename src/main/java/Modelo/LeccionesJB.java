@@ -1,11 +1,15 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.sql.Time;
+
+
+
 public class LeccionesJB implements Serializable{
 	private int ID_Leccion;
 	private String Leccion;
-	private String Hora_Ini;
-	private String Hora_Fin;
+	private Time Hora_Ini;
+	private Time Hora_Fin;
 	private int creditos;
 	private int Tipo_Leccion;
 	//leccionesjoin
@@ -17,7 +21,8 @@ public class LeccionesJB implements Serializable{
 	public LeccionesJB(){
 		
 	}
-	public LeccionesJB(int IDLeccion,String Leccion,String HoraIni,String HoraFin,int creditos,int TipoLeccion){
+	//el completo
+	public LeccionesJB(int IDLeccion,String Leccion,Time HoraIni,Time HoraFin,int creditos,int TipoLeccion){
 		this.ID_Leccion=IDLeccion;
 		this.Leccion=Leccion;
 		this.Hora_Ini=HoraIni;
@@ -25,8 +30,18 @@ public class LeccionesJB implements Serializable{
 		this.creditos=creditos;
 		this.Tipo_Leccion=TipoLeccion;
 	}
+	//el que no tiene ID
+	public LeccionesJB(String Leccion,Time HoraIni,Time HoraFin,int creditos,int TipoLeccion){
+		this.Leccion=Leccion;
+		this.Hora_Ini=HoraIni;
+		this.Hora_Fin=HoraFin;
+		this.creditos=creditos;
+		this.Tipo_Leccion=TipoLeccion;
+	}
 	
-	public LeccionesJB(int IDLeccion,String Leccion,String HoraIni,String HoraFin,int creditos,String tipoleccion){
+	
+	//el que tiene el tipo leccion con string
+	public LeccionesJB(int IDLeccion,String Leccion,Time HoraIni,Time HoraFin,int creditos,String tipoleccion){
 		this.ID_Leccion=IDLeccion;
 		this.Leccion=Leccion;
 		this.Hora_Ini=HoraIni;
@@ -34,7 +49,7 @@ public class LeccionesJB implements Serializable{
 		this.creditos=creditos;
 		this.tipoleccion=tipoleccion;
 	}
-	
+	//el que es para los alumnos
 	public LeccionesJB(int matri,String nombre,String Leccion,int creditos,float calif){
 		this.matri=matri;
 		this.nombre=nombre;
@@ -72,19 +87,19 @@ public class LeccionesJB implements Serializable{
 	    Leccion = leccion;
 	}
 	
-	public String getHora_Ini() {
+	public Time getHora_Ini() {
 	    return Hora_Ini;
 	}
 
-	public void setHora_Ini(String horaIni) {
+	public void setHora_Ini(Time horaIni) {
 	    Hora_Ini = horaIni;
 	}
 	
-	public String getHora_Fin() {
+	public Time getHora_Fin() {
 	    return Hora_Fin;
 	}
 
-	public void setHora_Fin(String horaFin) {
+	public void setHora_Fin(Time horaFin) {
 	    Hora_Fin = horaFin;
 	}
 	
