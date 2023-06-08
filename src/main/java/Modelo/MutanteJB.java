@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class MutanteJB implements Serializable {
 	private int  Curp;
@@ -9,7 +10,7 @@ public class MutanteJB implements Serializable {
 	private String Apellido_Mat;
 	private String Poder;
 	private String N_Alias;
-	private String fecha_nac;
+	private Date fecha_nac;
 	private String cel;
 	private String direcc;
 	private int Rol;
@@ -20,8 +21,10 @@ public class MutanteJB implements Serializable {
 	public MutanteJB(){
 		
 	}
+	
+	//El completo
 	public MutanteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, int Rol) {
+			String NAlias,Date fechanac,String cel,String direcc, int Rol) {
 		
 		this.Curp=Curp;
 		this.Nombre=Nombre;
@@ -35,9 +38,9 @@ public class MutanteJB implements Serializable {
 		this.Rol=Rol;
 		
 	}
-	
+	//con el rol en string
 	public MutanteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, String Rols) {
+			String NAlias,Date fechanac,String cel,String direcc, String Rols) {
 		
 		this.Curp=Curp;
 		this.Nombre=Nombre;
@@ -100,11 +103,11 @@ public class MutanteJB implements Serializable {
 	    N_Alias = nAlias;
 	}
 	
-	public String getFecha_nac() {
+	public Date getFecha_nac() {
 	    return fecha_nac;
 	}
 
-	public void setFecha_nac(String fechanac) {
+	public void setFecha_nac(Date fechanac) {
 	    this.fecha_nac = fechanac;
 	}
 	
