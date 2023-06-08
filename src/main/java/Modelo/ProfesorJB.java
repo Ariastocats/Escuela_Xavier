@@ -1,6 +1,8 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 public class ProfesorJB implements Serializable{
 	private int  Curp;
 	private String Nombre;
@@ -8,7 +10,7 @@ public class ProfesorJB implements Serializable{
 	private String Apellido_Mat;
 	private String Poder;
 	private String N_Alias;
-	private String fecha_nac;
+	private Date fecha_nac;
 	private String cel;
 	private String direcc;
 	private int Rol;
@@ -30,8 +32,10 @@ public class ProfesorJB implements Serializable{
 	public ProfesorJB() {
 		
 	}
+	
+	//completo
 	public ProfesorJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, int Rol,int MatriculaP,int Remuneracion,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,int MatriculaP,int Remuneracion,
 			int TProfesores,String CorreoInst,String Contraseña,String Status) {
 		this.Curp=Curp;
 		this.Nombre=Nombre;
@@ -52,8 +56,10 @@ public class ProfesorJB implements Serializable{
 		
 	}
 	
+	
+	//con el rol en string
 	public ProfesorJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
-			String NAlias,String fechanac,String cel,String direcc, String Rols,int MatriculaP,int Remuneracion,
+			String NAlias,Date fechanac,String cel,String direcc, String Rols,int MatriculaP,int Remuneracion,
 			String T_Profesor,String CorreoInst,String Contraseña,String Status) {
 		this.Curp=Curp;
 		this.Nombre=Nombre;
@@ -73,7 +79,7 @@ public class ProfesorJB implements Serializable{
 		this.Status=Status;
 		
 	}
-	
+	//para las lecciones y el profesor
 	public ProfesorJB(int Matricula_P,String Nombre,String leccion,String lecciont,int Remuneracion) {
 		this.Matricula_P=Matricula_P;
 		this.Nombre=Nombre;
@@ -132,11 +138,11 @@ public class ProfesorJB implements Serializable{
 	    N_Alias = nAlias;
 	}
 	
-	public String getFecha_nac() {
+	public Date getFecha_nac() {
 	    return fecha_nac;
 	}
 
-	public void setFecha_nac(String fechanac) {
+	public void setFecha_nac(Date fechanac) {
 	    this.fecha_nac = fechanac;
 	}
 	
