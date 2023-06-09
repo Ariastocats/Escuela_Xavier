@@ -17,7 +17,7 @@ public class ServletProfesor extends HttpServlet{
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProfesorDAO prof= new ProfesorDAO();
-		List<ProfesorJB>lista=prof.seleccionar();
+		List<ProfesorJB>lista=prof.joinprof();
 		if(lista.isEmpty()) {
 			 System.out.println("vacia la lista");
 		 }
