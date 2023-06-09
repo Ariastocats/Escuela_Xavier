@@ -63,6 +63,11 @@
 		 <input id="elimlec" type="text" name="id_leccion">
 		  <input id="btelimlec" type="submit" value="Elimnar leccion">
 		</form>
+		
+		<form action="ServletBuscarLeccion" method="get">
+		 <input id="busclec" type="text" name="id_leccion">
+		  <input id="btbusclec" type="submit" value="Modificar leccion">
+		</form>
     	
 	</body>
 	
