@@ -61,6 +61,10 @@
         %>
         
         </table>
+        
+         <form action="ServletRolOpcion" method="get">
+		 <input id="agregarlec" type="submit" value="Agregar nuevo Mutante">
+		</form>
 
     	
 	</body>
