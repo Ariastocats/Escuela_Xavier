@@ -38,6 +38,22 @@ public class MutanteJB implements Serializable {
 		this.Rol=Rol;
 		
 	}
+	//sin el id
+	public MutanteJB( String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol) {
+		
+		
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		
+	}
 	//con el rol en string
 	public MutanteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
 			String NAlias,Date fechanac,String cel,String direcc, String Rols) {
