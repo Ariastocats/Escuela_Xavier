@@ -22,6 +22,7 @@ private static final long serialVersionUID = 1L;
 		int id_leccion = Integer.parseInt(request.getParameter("id_leccion"));
 		LeccionesDAO lece= new LeccionesDAO();
 		lece.borrar(id_leccion);
+		// redirigir servlet response.sendRedirect("ServletLeccionesList?id="+id_leccion);
         response.sendRedirect("ServletLeccionesList");
 	}
 
