@@ -9,10 +9,11 @@ import java.util.List;
 public class LeccionesDAO {
 	public static final String selectSQL = "SELECT * FROM Lecciones";
 	public static final String insertSQL = "Insert into Lecciones(Leccion,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion) VALUES (?,?,?,?,?)";
-	public static final String updateSQL = "UPDATE Lecciones SET Leccion=?,Horario_Ini,Horario_Fin,creditos,Tipo_Leccion WHERE ID_Leccion=?";
+	public static final String updateSQL = "UPDATE Lecciones SET Leccion=?,Horario_Ini=?,Horario_Fin=?,creditos=?,Tipo_Leccion=? WHERE ID_Leccion=?";
 	public static final String deleteSQL = "DELETE FROM Lecciones WHERE ID_Leccion=?";
 	public static final String lecjoin="SELECT estudiantes.matricula as matricula,estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula";
 	public static final String select="Select lecciones.id_leccion,lecciones.leccion,lecciones.horario_ini,lecciones.horario_fin,lecciones.creditos,tipo_leccion.tipo_leccion as tipoleccion from lecciones join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol";
+	public static final String updatebuscar = "SELECT * FROM Lecciones WHERE id_leccion=?";
 	
 	public List<LeccionesJB> seleccionar(){
         Connection conn = null;
@@ -214,6 +215,42 @@ public class LeccionesDAO {
 		return registros;
 	}
 	
+	public LeccionesJB buscar(int id){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        LeccionesJB ruta = null;
+
+        try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(updatebuscar);
+
+            state.setInt(1,id);
+
+            result = state.executeQuery();
+
+            while(result.next()) {
+                int id_leccion = result.getInt("id_leccion");
+                String leccion = result.getString("leccion");
+                Time hora_ini = result.getTime("horario_ini");
+                Time hora_fin = result.getTime("horario_fin");
+                int creditos =result.getInt("creditos");
+                int tipo_leccion=result.getInt("tipo_leccion");
+
+                System.out.println("encontramos los valores");
+                ruta = new LeccionesJB(id_leccion,leccion,hora_ini,hora_fin,creditos,tipo_leccion);
+            }
+            Conexion.close(result);
+            Conexion.close(state);
+            Conexion.close(conn);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return ruta;
+    }
+	
 	public int modificar(LeccionesJB lec) {
 		Connection conn = null;
 		PreparedStatement state = null;
@@ -232,9 +269,12 @@ public class LeccionesDAO {
 			
 			
 			registros = state.executeUpdate();
-			if(registros>0)
+			if(registros>0) {
 				System.out.println("Registro actualizado");
-			
+			}
+			else {
+				System.out.println("Registro no actualizado");
+			}
 			Conexion.close(state);
 			Conexion.close(conn);
 			LeccionesJB lecMod = new LeccionesJB();
