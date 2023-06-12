@@ -48,6 +48,64 @@ public class EstudianteJB implements Serializable{
 		this.Status=Status;
 		
 	}
+	//sin la matricula
+	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,String CorreoInst,
+			String Contraseña,String Status) {
+		
+		this.Curp=Curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	
+	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol) {
+		
+		this.Curp=Curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		
+	}
+	// sin el curp
+	public EstudianteJB(String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,int Matricula,String CorreoInst,
+			String Contraseña,String Status) {
+		
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		this.Matricula=Matricula;
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	
 	//con el rol en string
 	public EstudianteJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
 			String NAlias,Date fechanac,String cel,String direcc, String Rols,int Matricula,String CorreoInst,
