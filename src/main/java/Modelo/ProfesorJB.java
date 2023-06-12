@@ -55,7 +55,67 @@ public class ProfesorJB implements Serializable{
 		this.Status=Status;
 		
 	}
-	
+	//sin el curp
+	public ProfesorJB(String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,int MatriculaP,int Remuneracion,
+			int TProfesores,String CorreoInst,String Contraseña,String Status) {
+		
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		this.Matricula_P=MatriculaP;
+		this.Remuneracion=Remuneracion;
+		this.T_Profesores=TProfesores;
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	// sin matricula
+	public ProfesorJB(int curp,String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol,int Remuneracion,
+			int TProfesores,String CorreoInst,String Contraseña,String Status) {
+		
+		this.Curp=curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		this.Remuneracion=Remuneracion;
+		this.T_Profesores=TProfesores;
+		this.Correo_Inst=CorreoInst;
+		this.Contraseña=Contraseña;
+		this.Status=Status;
+		
+	}
+	//para modificar desde mutante
+	public ProfesorJB(int curp,String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
+			String NAlias,Date fechanac,String cel,String direcc, int Rol) {
+		
+		this.Curp=curp;
+		this.Nombre=Nombre;
+		this.Apellido_Pat=ApellidoPat;
+		this.Apellido_Mat=ApellidoMat;
+		this.Poder=Poder;
+		this.N_Alias=NAlias;
+		this.fecha_nac=fechanac;
+		this.cel=cel;
+		this.direcc=direcc;
+		this.Rol=Rol;
+		
+		
+	}
 	
 	//con el rol en string
 	public ProfesorJB(int Curp, String Nombre,String ApellidoPat,String ApellidoMat,String Poder,
