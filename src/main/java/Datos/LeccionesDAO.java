@@ -219,7 +219,7 @@ public class LeccionesDAO {
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
-        LeccionesJB ruta = null;
+        LeccionesJB lec = null;
 
         try {
             conn = Conexion.getConnection();
@@ -238,7 +238,7 @@ public class LeccionesDAO {
                 int tipo_leccion=result.getInt("tipo_leccion");
 
                 System.out.println("encontramos los valores");
-                ruta = new LeccionesJB(id_leccion,leccion,hora_ini,hora_fin,creditos,tipo_leccion);
+                lec = new LeccionesJB(id_leccion,leccion,hora_ini,hora_fin,creditos,tipo_leccion);
             }
             Conexion.close(result);
             Conexion.close(state);
@@ -248,7 +248,7 @@ public class LeccionesDAO {
             e.printStackTrace();
         }
 
-        return ruta;
+        return lec;
     }
 	
 	public int modificar(LeccionesJB lec) {
