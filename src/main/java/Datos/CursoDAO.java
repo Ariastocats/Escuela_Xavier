@@ -68,7 +68,7 @@ public class CursoDAO {
 			state.setInt(1,cur.getID_Est());
 		
 			state.setInt(2,cur.getID_Leccion());
-			state.setFloat(2,cur.getCalificacion());
+			state.setFloat(3,cur.getCalificacion());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
