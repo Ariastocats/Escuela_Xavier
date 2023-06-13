@@ -14,6 +14,7 @@ public class EstudianteDAO {
 	public static final String joinest="SELECT estudiantes.curp,estudiantes.nombre,estudiantes.apellido_pat,estudiantes.apellido_mat,estudiantes.poder,estudiantes.n_alias,estudiantes.fecha_nac,estudiantes.cel,estudiantes.direcc, rol.rol as Rols,estudiantes.matricula, estudiantes.correo_inst,estudiantes.contraseña,estudiantes.status FROM estudiantes JOIN rol ON estudiantes.rol=rol.id_rol";
 	public static final String updatebuscar = "SELECT * FROM Estudiantes WHERE matricula=?";
 	public static final String eliminar="UPDATE Estudiantes set Status='deshabilitado' where curp=?";
+	public static final String correobuscar = "SELECT * FROM Estudiantes WHERE correo_inst=?";
 	
 	public List<EstudianteJB> seleccionar(){
         Connection conn = null;
@@ -237,6 +238,52 @@ public class EstudianteDAO {
             state = conn.prepareStatement(updatebuscar);
 
             state.setInt(1,id);
+
+            result = state.executeQuery();
+
+            while(result.next()) {
+            	
+                int curp = result.getInt("curp");
+                String nombre = result.getString("nombre");
+                String apellido_pat = result.getString("apellido_pat");
+                String apellido_mat = result.getString("apellido_mat");
+                String poder = result.getString("poder");
+                String n_alias = result.getString("n_alias");
+                Date fecha_nac = result.getDate("fecha_nac");
+				String cel = result.getString("cel");
+				String direcc=result.getString("direcc");
+				int rol=result.getInt("rol");
+				int Matricula=result.getInt("Matricula");
+				String Correo_Inst = result.getString("Correo_Inst");
+				String Contraseña = result.getString("Contraseña");
+				String Status = result.getString("Status");
+                
+
+                System.out.println("encontramos los valores");
+                mut = new EstudianteJB(curp,nombre,apellido_pat,apellido_mat,poder,n_alias,fecha_nac,cel,direcc,rol,Matricula,Correo_Inst,Contraseña,Status);
+            }
+            Conexion.close(result);
+            Conexion.close(state);
+            Conexion.close(conn);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return mut;
+    }
+	
+	public EstudianteJB buscarcorreo(String id){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        EstudianteJB mut = null;
+
+        try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(correobuscar);
+
+            state.setString(1,id);
 
             result = state.executeQuery();
 
