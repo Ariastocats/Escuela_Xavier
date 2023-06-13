@@ -10,6 +10,11 @@
 	</head>
 	
 	<body>
+	<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		 
 	
 	<jsp:useBean id="presentacionesjb" class="Modelo.PresentacionesJB" scope="request"/>
 
@@ -58,6 +63,11 @@
 		<form action="ServletEliminarPresentaciones">
 		 <input id="elimPres" type="text" name="id_presentacion">
 		  <input id="btelimPres" type="submit" value="Elimnar Presentacion">
+		</form>
+		
+		<form action="ServletBuscarPresentacion" method="get">
+		 <input id="buscpres" type="text" name="n_presentacion">
+		  <input id="btbuscpres" type="submit" value="Modificar presentacion">
 		</form>
 		
     	
