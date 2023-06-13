@@ -12,7 +12,13 @@
 
 
 <body>
-
+<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		 <form action="ServletLeccionesList" method="get">
+		 <input id="regmenu" type="submit" value="Regresar atras">
+		</form>
 
 
     <form action="ServletLeccionesList" method="post">
