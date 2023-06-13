@@ -11,6 +11,12 @@
 	
 	<body>
 	
+	<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		
+	
 	<jsp:useBean id="presentacionesjb" class="Modelo.PresentacionesJB" scope="request"/>
 
 		<table width="100%">
@@ -52,6 +58,15 @@
         %>
         
         </table>
+        <form action="ServletParticipantes" method="get">
+ 		<input id="buscpart" type="text" name="n_presentacion"> 
+		  <input id="btbuspart" type="submit" value="ver los participantes">
+		</form>
+		
+		 <form action="ServletAsistPresentaciones" method="get">
+		  <input id="btbuscasis" type="submit" value="Agregar nuevo participante">
+		</form>
+        
 		
 	</body>
 	
