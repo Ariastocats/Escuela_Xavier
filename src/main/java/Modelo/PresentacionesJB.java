@@ -15,12 +15,15 @@ public class PresentacionesJB implements Serializable{
 	private String nombre;
 	private String Rols;
 	private int asist;
+	private int curp;
 	
 	
-	
+
+
 	public PresentacionesJB() {
 		
 	}
+	
 	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario) {
 		this.N_Presentacion=NPresentacion;
 		this.Presentacion=Presentacion;
@@ -29,6 +32,31 @@ public class PresentacionesJB implements Serializable{
 		
 		
 	}
+	
+	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario,String nombre,String Rols) {
+		this.N_Presentacion=NPresentacion;
+		this.Presentacion=Presentacion;
+		this.Dia=Dia;
+		this.Horario=Horario;
+		this.nombre=nombre;
+		this.Rols=Rols;
+		
+		
+	}
+	
+	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario,String nombre,String Rols,int curp) {
+		this.N_Presentacion=NPresentacion;
+		this.Presentacion=Presentacion;
+		this.Dia=Dia;
+		this.Horario=Horario;
+		this.nombre=nombre;
+		this.Rols=Rols;
+		this.curp=curp;
+		
+		
+	}
+	
+	
 	
 	public PresentacionesJB(int NPresentacion,String Presentacion,Date Dia,Time Horario,int asist) {
 		this.N_Presentacion=NPresentacion;
@@ -96,6 +124,14 @@ public class PresentacionesJB implements Serializable{
 
 	public void setHorario(Time horario) {
 	    Horario = horario;
+	}
+	
+	public int getCurp() {
+		return curp;
+	}
+
+	public void setCurp(int curp) {
+		this.curp = curp;
 	}
 	
 
