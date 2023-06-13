@@ -31,8 +31,27 @@ private static final long serialVersionUID = 1L;
 		 }
 		 System.out.println("mosttando");
 		 request.setAttribute("lista",lista);
-		 RequestDispatcher dispatcher = request.getRequestDispatcher("LeccionesList.jsp");
+		 int rolocult=0;
+			try {
+				
+				rolocult = Integer.parseInt(request.getParameter(("rolocult")));
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		 if(rolocult>0) {
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("LeccionesListMEstudiante.jsp");
+			 dispatcher.forward(request,response);
+			 
+		 }
+		 else {
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("LeccionesList.jsp");
 		 dispatcher.forward(request,response);
+		 }
+		 
+		 
+		 
+		 
+		 
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,7 +73,7 @@ private static final long serialVersionUID = 1L;
 		LeccionesJB Lecciones = new LeccionesJB(leccion,horario_ini,horario_fin,creditos,tipo_leccion);
 		LeccionesDAO lecc= new LeccionesDAO();
 		lecc.agregar(Lecciones);
-		response.sendRedirect("");
+		response.sendRedirect("ServletLeccionesList");
 		
 		
 	}
