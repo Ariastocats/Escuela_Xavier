@@ -11,6 +11,11 @@
 	
 	<body>
 	
+	<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+	
 	<jsp:useBean id="profesorjb" class="Modelo.ProfesorJB" scope="request"/>
 
 		<table width="100%">
@@ -33,7 +38,7 @@
                 <th>Tipo de Profesor </th>
                 <th>Correo institucional </th>
                 <th>Contraseña </th>
-                 <th>Status </th>
+<!--                  <th>Status </th> -->
                 
                 
             </tr>
@@ -63,6 +68,7 @@
             	<td><%out.print(prof.getT_Profesor());%></td>
             	<td><%out.print(prof.getCorreo_Inst()); %></td>
             	<td><%out.print(prof.getContraseña());%></td>
+<%--             	<td><%out.print(prof.getStatus());%></td> --%>
             	
             	
         	</tr>
@@ -75,6 +81,22 @@
         %>
         
         </table>
+        <form action="ServletProfesorOpcion" method="get">
+		 <input id="agregarprof" type="submit" value="Agregar nuevo Profesor">
+		</form>
+		
+		<form action="ServletBuscarProfesor" method="get">
+		 <input id="buscmut" type="text" name="matricula_p">
+		  <input id="btbuscmut" type="submit" value="Modificar profesor">
+		</form>
+		
+<!-- 		por curp -->
+		<form action="ServletEliminarMutante" method="get">
+		 <input id="elimprof" type="text" name="curp">
+		  <input id="btelimprof" type="submit" value="Elimnar profesor">
+		</form>
+		
+		
 
     	
 	</body>
