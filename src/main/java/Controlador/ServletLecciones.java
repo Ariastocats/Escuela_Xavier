@@ -17,7 +17,16 @@ private static final long serialVersionUID = 1L;
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
-		LeccionesDAO lec=new LeccionesDAO();
+		int matricula=0;
+		try {
+			matricula=Integer.parseInt(request.getParameter("matriculaocult"));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(matricula==0) {
+			LeccionesDAO lec=new LeccionesDAO();
 		List<LeccionesJB> lista=lec.lecjoin();
 		if(lista.isEmpty()) {
 			 System.out.println("vacia la lista");
@@ -26,10 +35,27 @@ private static final long serialVersionUID = 1L;
 			 System.out.println("tienes datos");
 			 
 		 }
-		 System.out.println("mosttando");
+		System.out.println("mosttando");
 		 request.setAttribute("lista",lista);
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("LeccionesAlumnosList.jsp");
 		 dispatcher.forward(request,response);
+		}
+		
+		else {
+			LeccionesDAO lec=new LeccionesDAO();
+			List<LeccionesJB> lista=lec.lecjoinmatricula(matricula);
+			request.setAttribute("lista",lista);
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("LeccionesAlumnosListMEstudiante.jsp");
+			 dispatcher.forward(request,response);
+			
+		}
+		
+		
+		
+		
+		
+		 
+		
 	}
 
 }
