@@ -10,6 +10,11 @@
 	</head>
 	
 	<body>
+	<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		 
 	
 	<jsp:useBean id="profesorleccionesjb" class="Modelo.ProfesorJB" scope="request"/>
 
@@ -52,6 +57,11 @@
         %>
         
         </table>
+        
+        <form action="ServletCursoProf" method="get">
+<!-- 		 <input id="busclec" type="text" name="id_leccion"> -->
+		  <input id="btbusclec" type="submit" value="Agregar profesor al curso">
+		</form>
 
     	
 	</body>
