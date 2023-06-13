@@ -13,7 +13,13 @@
 
 <body>
 
-
+ <form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		 <form action="ServletMutante" method="get">
+		 <input id="regmenu" type="submit" value="Regresar atras">
+		</form>
 
     <form action="ServletMutante" method="post">
 	<%
@@ -27,7 +33,7 @@
 
 
         <label for="nombre"> Nombre de el mutante </label>
-        <input id="presentacion" type="text" name="leccion">
+        <input id="presentacion" type="text" name="nombre">
 
         <br>
         <br>
