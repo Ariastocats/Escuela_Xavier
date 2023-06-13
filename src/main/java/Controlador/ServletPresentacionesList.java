@@ -22,6 +22,8 @@ private static final long serialVersionUID = 1L;
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
+		
+		
 		PresentacionesDAO pres=new PresentacionesDAO();
 		List<PresentacionesJB> lista=pres.seleccionar();
 		if(lista.isEmpty()) {
@@ -31,10 +33,28 @@ private static final long serialVersionUID = 1L;
 			 System.out.println("tienes datos");
 			 
 		 }
+		
+		
 		 System.out.println("mosttando");
 		 request.setAttribute("lista",lista);
-		 RequestDispatcher dispatcher = request.getRequestDispatcher("PresentacionesListR.jsp");
+		 int rolocult=0;
+			try {
+				
+				rolocult = Integer.parseInt(request.getParameter(("rolocult")));
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			if(rolocult>0) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("PresentacionesListRMEstudiante.jsp");
+				 dispatcher.forward(request,response);
+				
+			}
+			else {
+				 RequestDispatcher dispatcher = request.getRequestDispatcher("PresentacionesListR.jsp");
 		 dispatcher.forward(request,response);
+			}
+		 
+		
 		 
 	}
 	
@@ -58,7 +78,7 @@ private static final long serialVersionUID = 1L;
 		PresentacionesJB Presentaciones = new PresentacionesJB(presentacion,dia,hora);
 		PresentacionesDAO presen=new PresentacionesDAO();
 		presen.agregar(Presentaciones);
-		response.sendRedirect("");
+		response.sendRedirect("ServletPresentacionesList");
 			
 	}
 	
