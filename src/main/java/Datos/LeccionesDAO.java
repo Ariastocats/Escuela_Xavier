@@ -14,6 +14,7 @@ public class LeccionesDAO {
 	public static final String lecjoin="SELECT estudiantes.matricula as matricula,estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula";
 	public static final String select="Select lecciones.id_leccion,lecciones.leccion,lecciones.horario_ini,lecciones.horario_fin,lecciones.creditos,tipo_leccion.tipo_leccion as tipoleccion from lecciones join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol";
 	public static final String updatebuscar = "SELECT * FROM Lecciones WHERE id_leccion=?";
+	public static final String lecjoinmatricula="SELECT estudiantes.matricula as matricula,estudiantes.nombre as nombre,lecciones.leccion,lecciones.creditos,curso.calificacion as calif from lecciones join curso on lecciones.id_leccion=curso.id_leccion join estudiantes on curso.id_est=estudiantes.matricula where estudiantes.matricula=?";
 	
 	public List<LeccionesJB> seleccionar(){
         Connection conn = null;
@@ -123,6 +124,54 @@ public class LeccionesDAO {
             conn = Conexion.getConnection();
             state = conn.createStatement();
             result = state.executeQuery(lecjoin);
+			
+			while(result.next()) {
+				int matri=result.getInt("matricula");
+				String nombre = result.getString("nombre");
+				String Leccion=result.getString("Leccion");
+				int creditos=result.getInt("creditos");
+				float calif=result.getInt("calif");
+				
+				con = new LeccionesJB(matri,nombre,Leccion,creditos,calif);
+				lec.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(LeccionesJB c: lec) {
+				System.out.println("matricula de alumno: " + c.getMatri());
+				System.out.println("nombre del alumno: " + c.getNombre());
+				System.out.println("Leccion: " + c.getLeccion());
+				System.out.println("Creditos: " + c.getCreditos());
+				System.out.println("Calificacion: " + c.getCalif());
+				
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return lec;
+
+		
+	}
+	
+	public List<LeccionesJB> lecjoinmatricula(int matricula){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		LeccionesJB con = null;
+		
+		List<LeccionesJB> lec = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(lecjoinmatricula);
+			
+			state.setInt(1,matricula);
+			result = state.executeQuery();
 			
 			while(result.next()) {
 				int matri=result.getInt("matricula");
