@@ -1,5 +1,6 @@
 package Datos;
 
+import Modelo.LeccionesJB;
 import Modelo.ProfesorJB;
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class ProfesorDAO {
 	public static final String joinprle="SELECT profesor.matricula_p,profesor.nombre,lecciones.leccion as leccion,tipo_leccion.tipo_leccion as lecciont,profesor.remuneracion from lecciones inner join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol inner join cursoprof on lecciones.id_leccion=cursoprof.id_leccion inner join profesor on cursoprof.matricula_prof=profesor.matricula_p order by profesor.matricula_p asc";
 	public static final String updatebuscar = "SELECT * FROM Profesor WHERE matricula_p=?";
 	public static final String eliminar="UPDATE Profesor set Status='deshabilitado' where curp =?";
+	public static final String correobuscar = "SELECT * FROM Profesor WHERE Correo_Inst=?";
+	public static final String joinprlebuscar="SELECT profesor.matricula_p,profesor.nombre,lecciones.leccion as leccion,tipo_leccion.tipo_leccion as lecciont,profesor.remuneracion from lecciones inner join tipo_leccion on lecciones.tipo_leccion=tipo_leccion.id_tipol inner join cursoprof on lecciones.id_leccion=cursoprof.id_leccion inner join profesor on cursoprof.matricula_prof=profesor.matricula_p where profesor.matricula_p =? order by profesor.matricula_p asc";
 	
 	public List<ProfesorJB> seleccionar(){
         Connection conn = null;
@@ -191,6 +194,55 @@ public class ProfesorDAO {
 		return profesores;
 	}
 	
+	public List<ProfesorJB> joinprlebuscar(int matricula_p){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		ProfesorJB con = null;
+		
+		List<ProfesorJB> prof = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(joinprlebuscar);
+			
+			state.setInt(1,matricula_p);
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int Matricula_P = result.getInt("Matricula_P");
+				String Nombre = result.getString("Nombre");
+				String leccion=result.getString("leccion");
+				String lecciont=result.getString("lecciont");
+				int Remuneracion=result.getInt("Remuneracion");
+				
+				con = new ProfesorJB(Matricula_P,Nombre,leccion,lecciont,Remuneracion);
+				prof.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			for(ProfesorJB c: prof) {
+				System.out.println("Matricula de profesor: " + c.getMatricula_P());
+				System.out.println("Nombre: " + c.getNombre());
+				System.out.println("leccion: " + c.getLeccion());
+				System.out.println("leccion tipo: " + c.getLecciont());
+				System.out.println("Remuneracion: " + c.getRemuneracion());
+				System.out.println("\n");
+				
+				System.out.println("\n");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return prof;
+
+		
+	}
+	
 	public int agregar(ProfesorJB profesores) {
 		Connection conn = null;
 		PreparedStatement state = null;
@@ -285,7 +337,55 @@ public class ProfesorDAO {
 				int rol=result.getInt("rol");
 				int Matricula_P=result.getInt("Matricula_P");
 				int Remuneracion=result.getInt("Remuneracion");
-				int T_Profesor = result.getInt("T_Profesor");
+				int T_Profesor = result.getInt("T_Profesores");
+				String Correo_Inst = result.getString("Correo_Inst");
+				String Contraseña = result.getString("Contraseña");
+				String Status = result.getString("Status");
+                
+
+                System.out.println("encontramos los valores");
+                mut = new ProfesorJB(curp,nombre,apellido_pat,apellido_mat,poder,n_alias,fecha_nac,cel,direcc,rol,Matricula_P,Remuneracion,T_Profesor,Correo_Inst,Contraseña,Status);
+            }
+            Conexion.close(result);
+            Conexion.close(state);
+            Conexion.close(conn);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return mut;
+    }
+	
+	public ProfesorJB buscarcorreo(String id){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        ProfesorJB mut = null;
+
+        try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(correobuscar);
+
+            state.setString(1,id);
+
+            result = state.executeQuery();
+
+            while(result.next()) {
+            	
+                int curp = result.getInt("curp");
+                String nombre = result.getString("nombre");
+                String apellido_pat = result.getString("apellido_pat");
+                String apellido_mat = result.getString("apellido_mat");
+                String poder = result.getString("poder");
+                String n_alias = result.getString("n_alias");
+                Date fecha_nac = result.getDate("fecha_nac");
+				String cel = result.getString("cel");
+				String direcc=result.getString("direcc");
+				int rol=result.getInt("rol");
+				int Matricula_P=result.getInt("Matricula_P");
+				int Remuneracion=result.getInt("Remuneracion");
+				int T_Profesor = result.getInt("T_Profesores");
 				String Correo_Inst = result.getString("Correo_Inst");
 				String Contraseña = result.getString("Contraseña");
 				String Status = result.getString("Status");
