@@ -1,7 +1,10 @@
 package Controlador;
 
 import Datos.MutanteDAO;
+import Datos.T_ProfesoresDAO;
 import Modelo.MutanteJB;
+import Modelo.T_ProfesoresJB;
+
 import java.io.*;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
@@ -59,14 +62,48 @@ public class ServletMutante extends HttpServlet{
 		String direcc =request.getParameter("direcc");
 		
 		int rol =Integer.parseInt(request.getParameter("rolopciones"));
-		
-		 
 		MutanteJB mutan =new MutanteJB(nombre,apellido_pat,apellido_mat,poder,n_alias,fecha_nac,cel,direcc,rol);
 		MutanteDAO mut=new MutanteDAO();
 		
 		
-		mut.agregar(mutan);
-		response.sendRedirect("");
+		if(rol ==1) {
+			T_ProfesoresDAO tp=new T_ProfesoresDAO();
+			List<T_ProfesoresJB> lista= tp.seleccionar();
+			if(lista.isEmpty()) {
+				 System.out.println("vacia la lista");
+			 }
+			 else {
+				 System.out.println("tienes datos en opcion");
+				 
+			 }
+			 System.out.println("mosttando");
+			 
+			 request.setAttribute("profopcion",lista);
+			
+			request.setAttribute("mut",mutan);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("MutanteAProfesor.jsp");
+			 dispatcher.forward(request,response);
+			
+			
+		}
+		else if(rol ==2){
+			request.setAttribute("mut",mutan);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("MutanteAEstudiante.jsp");
+			 dispatcher.forward(request,response);
+			
+			
+		}
+		else if(rol ==3) {
+			mut.agregar(mutan);
+		response.sendRedirect("ServletMutante");
+		}
+		else {
+			System.out.println("no se pudo");
+		}
+		 
+		
+		
+		
 		
 		
 	}
