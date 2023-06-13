@@ -8,11 +8,19 @@
 <html>
 
     <head>
-        <title> Agregar leccion </title>
+        <title> modificar leccion </title>
     </head>
 
 
 <body>
+
+<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
+		 <form action="ServletLeccionesList" method="get">
+		 <input id="regmenu" type="submit" value="Regresar atras">
+		</form>
 
 	<jsp:useBean id="lecciones" class="Modelo.LeccionesJB" scope="request" />
 	
@@ -29,32 +37,32 @@
 	
 	 %>
 
-		<label for="Presentacion"> Id de la leccion </label>
-        <input id="presentacion" type="hidden" name="id_leccion" value="<%=lec.getID_Leccion()%>">
+		<label for="idlec"> Id de la leccion </label>
+        <input id="idlec" type="hidden" name="id_leccion" value="<%=lec.getID_Leccion()%>">
 
         <br>
         <br>
 
-        <label for="Presentacion"> Nombre de la leccion </label>
-        <input id="presentacion" type="text" name="leccion" value="<%=lec.getLeccion()%>">
+        <label for="lec"> Nombre de la leccion </label>
+        <input id="lec" type="text" name="leccion" value="<%=lec.getLeccion()%>">
 
         <br>
         <br>
 
-        <label for="nombre"> Hora de inicio de la leccion </label>
-        <input id="nom_her" type="time" name="horario_ini" value="<%=lec.getHora_Ini()%>">
-
-        <br>
-        <br>
-        
-        <label for="nombre"> Hora en que acaba la leccion </label>
-        <input id="nom_her" type="time" name="horario_fin" value="<%=lec.getHora_Fin()%>">
+        <label for="horai"> Hora de inicio de la leccion </label>
+        <input id="horai" type="time" name="horario_ini" value="<%=lec.getHora_Ini()%>">
 
         <br>
         <br>
         
-        <label for="nombre"> Creditos de la leccion </label>
-        <input id="nom_her" type="text" name="creditos" value="<%=lec.getCreditos()%>">
+        <label for="horaf"> Hora en que acaba la leccion </label>
+        <input id="horaf" type="time" name="horario_fin" value="<%=lec.getHora_Fin()%>">
+
+        <br>
+        <br>
+        
+        <label for="cred"> Creditos de la leccion </label>
+        <input id="cred" type="text" name="creditos" value="<%=lec.getCreditos()%>">
 
         <br>
         <br>
@@ -70,7 +78,7 @@
 		
 		<%} %>
 		</select>
-        <input type="submit" value="Agregar Leccion">
+        <input type="submit" value="Modificar Leccion">
 
     </form>
 
