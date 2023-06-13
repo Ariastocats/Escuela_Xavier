@@ -10,6 +10,10 @@
 	</head>
 	
 	<body>
+	<form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
+		
 	
 	<jsp:useBean id="estudiantejb" class="Modelo.EstudianteJB" scope="request"/>
 
@@ -31,7 +35,7 @@
                 
                 <th>Correo institucional </th>
                 <th>Contraseña </th>
-                 <th>Status </th>
+<!--                  <th>Status </th> -->
                 
             </tr>
       	</thead>
@@ -57,7 +61,7 @@
             	<td><%out.print(est.getRols());%></td>
             	<td><%out.print(est.getCorreo_Inst());%></td>
             	<td><%out.print(est.getContraseña()); %></td>
-            	<td><%out.print(est.getStatus());%></td>
+<%--             	<td><%out.print(est.getStatus());%></td> --%>
             	
             	
         	</tr>
@@ -70,7 +74,20 @@
         %>
         
         </table>
-
+        
+        <form action="EstudiantesAgregar.jsp">
+		 <input id="agregarest" type="submit" value="Agregar nuevo Estudiante">
+		</form>
+		
+		<form action="ServletBuscarEstudiante" method="get">
+		 <input id="buscest" type="text" name="matricula">
+		  <input id="btbuscest" type="submit" value="Modificar Estudiante">
+		</form>
+		
+		<form action="ServletEliminarMutante" method="get">
+		 <input id="elimest" type="text" name="curp">
+		  <input id="btelimest" type="submit" value="Elimnar Estudiante">
+		</form>
     	
 	</body>
 	
