@@ -10,6 +10,9 @@
 	</head>
 	
 	<body>
+	 <form action="MenuAdmin.jsp">
+		 <input id="regmenu" type="submit" value="Regresar al menu">
+		</form>
 	
 	<jsp:useBean id="mutantejb" class="Modelo.MutanteJB" scope="request"/>
 
@@ -36,7 +39,9 @@
   		@SuppressWarnings("unchecked")
 		List<MutanteJB> lista = (List<MutanteJB>) request.getAttribute("lista");
         if (lista != null){
-        	for (MutanteJB mut : lista){
+        	for (MutanteJB mut : lista){ //if(mut.getStatus="acitvo"){
+        		
+        	
         %>
             <tr>
             	<td><%out.print(mut.getCurp()); %></td>
@@ -52,7 +57,9 @@
             	
             	
         	</tr>
+        	
        	<%
+        	//}
         	}
        	}
         else{
@@ -64,6 +71,16 @@
         
          <form action="ServletRolOpcion" method="get">
 		 <input id="agregarlec" type="submit" value="Agregar nuevo Mutante">
+		</form>
+		
+		<form action="ServletBuscarMutante" method="get">
+		 <input id="buscmut" type="text" name="curp">
+		  <input id="btbuscmut" type="submit" value="Modificar Mutante">
+		</form>
+		
+		<form action="ServletEliminarMutante" method="get">
+		 <input id="elimmut" type="text" name="curp">
+		  <input id="btelimlec" type="submit" value="Elimnar mutante">
 		</form>
 
     	
