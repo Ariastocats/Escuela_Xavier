@@ -67,7 +67,7 @@ public class CursoProfDAO {
 			state.setInt(1,cursop.getMatricula_Prof());
 		
 			state.setInt(2,cursop.getID_Leccion());
-			state.setString(2,cursop.getSemestre());
+			state.setString(3,cursop.getSemestre());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
