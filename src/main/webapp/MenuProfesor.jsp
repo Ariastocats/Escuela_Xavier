@@ -37,7 +37,7 @@
     		
     		<form action="ServletProfesorLeccion" method="get">
     		<input type="hidden" name="matriculapocult" value="<%=est.getMatricula_P()%>">
-        		<input type="submit" name="prlecver" value="Ver profesores y lecciones">
+        		<input type="submit" name="prlecver" value="Ver Lecciones Asignadas">
     		</form>
     	
     	</div>

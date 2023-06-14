@@ -40,7 +40,7 @@
     		
     		<form action="ServletLecciones" method="get">
     		<input type="hidden" name="matriculaocult" value="<%=est.getMatricula()%>">
-        		<input type="submit" name="lecalver" value="Ver alumnos y lecciones">
+        		<input type="submit" name="lecalver" value="Ver Calificaciones">
     		</form>
     		
     		

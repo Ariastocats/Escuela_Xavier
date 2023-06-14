@@ -58,10 +58,7 @@
         
         </table>
         
-        <form action="ServletCursoProf" method="get">
-<!-- 		 <input id="busclec" type="text" name="id_leccion"> -->
-		  <input id="btbusclec" type="submit" value="Agregar profesor al curso">
-		</form>
+       
 
     	
 	</body>
